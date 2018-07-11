@@ -17,7 +17,7 @@ public class App {
         OntologyAccess oa = new OntologyAccess();
         ResourceCreation ontologia = new ResourceCreation();
         
-        ontologia.createIndividual(oa.loadOntologyModel("oboe_wcm.owl"));
+        ontologia.createIndividual(oa.loadOntologyModel("oboewcm2.owl"));
         
 
     }
