@@ -6,6 +6,7 @@
 package com.mycompany.ontologytesting;
 
 import java.io.IOException;
+import org.apache.jena.ontology.OntModel;
 
 /**
  *
@@ -14,11 +15,9 @@ import java.io.IOException;
 public class App {
 
     public static void main(String[] args) throws IOException {
-        OntologyAccess oa = new OntologyAccess();
-        ResourceCreation ontologia = new ResourceCreation();
         
-        ontologia.createIndividual(oa.loadOntologyModel("oboewcm2.owl"));
-        
+        OntModel ontModel = OntologyAccess.loadOntologyModel("oboewcm2.owl");
+        ResourceCreation.createIndividual(ontModel);
 
     }
 }

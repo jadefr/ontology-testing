@@ -21,29 +21,39 @@ import org.apache.jena.rdf.model.ResourceFactory;
  */
 public class ResourceCreation {
 
-    String path = "C:\\Users\\jadef\\Documents\\NetBeansProjects";
-    String baseURI1 = "http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#";
-    String baseURI2 = "http://www.semanticweb.org/jadef/ontologies/2018/4/wcm#";
-    String baseURI3 = "http://ecoinformatics.org/oboe/oboe.1.2/oboe-characteristics.owl#";
-    String baseURI4 = "http://ecoinformatics.org/oboe/oboe.1.2/oboe-standards.owl#";
+    private static final String PATH = "src/main/files/";
+    private static final String BASE_URI1 = "http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#";
+    private static final String BASE_URI2 = "http://www.semanticweb.org/jadef/ontologies/2018/4/wcm#";
+    private static final String BASE_URI3 = "http://ecoinformatics.org/oboe/oboe.1.2/oboe-characteristics.owl#";
+    private static final String BASE_URI4 = "http://ecoinformatics.org/oboe/oboe.1.2/oboe-standards.owl#";
+    private static final String BASE_URI5 = "http://www.semanticweb.org/jadef/ontologies/2018/4/oboe_wcm#";
 
-    public void createIndividual(OntModel ontModel) throws IOException {
+    /**
+     *
+     * @param ontModel
+     * @throws IOException
+     */
+    public static void createIndividual(OntModel ontModel) throws IOException {
 
-        //Individuo da classe DarkSky (que equivale a uma entity) - forma resumida
-        OntClass darkSkyClass = ontModel.getOntClass(baseURI2 + "DarkSky"); //seleciona a classe DarkSky
-        Individual darkSkyIndividual = darkSkyClass.createIndividual(baseURI2 + "darkSky"); // nome da instancia
+        //Individuo da classe Entity - forma resumida
+        OntClass darkSkyClass = ontModel.getOntClass(BASE_URI1 + "Entity"); //seleciona a classe Entity
+        System.out.println(darkSkyClass);
+        Individual darkSkyIndividual = darkSkyClass.createIndividual(BASE_URI5 + "DarkSky"); // nome da instancia
+        System.out.println(darkSkyIndividual);
 
         //Individuo da classe observation
-        OntClass observationClass = ontModel.getOntClass(baseURI1 + "Observation");
-        Individual observationIndividual = observationClass.createIndividual(baseURI2 + "observation");
-
+        OntClass observationClass = ontModel.getOntClass(BASE_URI1 + "Observation");
+        System.out.println(observationClass);
+        Individual observationIndividual = observationClass.createIndividual(BASE_URI5 + "Observation");
+        System.out.println(observationIndividual);
+        
         //Recuperar object properties já existentes na ontologia
-        ObjectProperty ofEntity = ontModel.getObjectProperty(baseURI1 + "ofEntity");
+        ObjectProperty ofEntity = ontModel.getObjectProperty(BASE_URI1 + "ofEntity");
 
         //Setar observation como dominio e darkSky como range
         Resource objpropOfEntity = observationIndividual.addProperty(ofEntity, darkSkyIndividual);
 
-        OutputStream out = new FileOutputStream(path + "\\oboe_wcm_output.rdf");
+        OutputStream out = new FileOutputStream(PATH + "\\oboe_wcm_output.rdf");
         ontModel.write(out, "RDF/XML-ABBREV");
         out.close();
 

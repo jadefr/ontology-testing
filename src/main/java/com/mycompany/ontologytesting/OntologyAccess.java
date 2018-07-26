@@ -23,14 +23,21 @@ import org.apache.jena.reasoner.ReasonerRegistry;
 public class OntologyAccess {
 
     private static OntModel ontModel;
-    String path = "C:\\Users\\jadef\\Documents\\NetBeansProjects";
+    private static final String PATH = "src/main/files/";
 
-    public OntModel loadOntologyModel(String fileName) throws IOException {
-        
+    /**
+     *
+     * @param fileName
+     * @return
+     * @throws IOException
+     */
+    public static OntModel loadOntologyModel(String fileName) throws IOException {
+
         ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
-        Path pathObj = Paths.get(path, fileName);
+        Path pathObj = Paths.get(PATH, fileName);
         InputStream input = new FileInputStream(pathObj.toString());
         ontModel.read(input, "RDF/XML");
+        //System.out.println(ontModel);
         Reasoner reasoner = ReasonerRegistry.getOWLReasoner();
         reasoner = reasoner.bindSchema(ontModel);
         OntModelSpec ontModelSpec = OntModelSpec.OWL_DL_MEM_TRANS_INF;
