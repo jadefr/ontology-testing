@@ -1,1 +1,1 @@
-Creating classes, individuals, and properties withing Jena Framework
+Creating classes, individuals, and properties with Jena Framework
