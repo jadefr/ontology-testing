@@ -4,5 +4,5 @@
 
 # O que aprendi
 
-* Criar classes, indivíduos, propriedades (object properties) e regrar do SWRL
+* Criar classes, indivíduos, propriedades (object properties) e regras do SWRL
 
